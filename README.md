@@ -177,3 +177,69 @@ Header:
 Aditional Notes:
 
 - Endpoint ini menggunakan login token yang dapat diakses di POST `/api/auth/login` dan menaruhnya di header.
+
+### Cardless Components
+
+1. POST `localhost:<portNum>/api/cardless/deposit`. Menambahkan saldo melalui deposit, menyimpannya dalam rekening pilihan pengguna, serta mencatatnya dalam transaction history.
+
+Body:
+
+```json
+{
+		"amount": deposit amount
+}
+```
+
+Header:
+
+![Header image](https://github.com/user-attachments/assets/d8d52a51-1012-4b48-9f67-a2d36bcd4465)
+
+Result:
+
+```json
+{
+		"message": "Successful deposit"
+}
+
+```
+
+Additional Notes:
+
+- Untuk mengakses endpoint ini, anda harus terlebih dahulu memiliki account.
+- Amount harus diisi dan bersifat positif.
+- Token `Authorization` didapatkan melalui /api/auth/transaction.
+
+Example Result:
+![Example of Deposit](https://github.com/user-attachments/assets/5975b333-ccfd-4f54-8d92-4d9b35738d35)
+
+2. POST `localhost:<portNum>/api/cardless/withdraw`. Mengurangi saldo dari rekening pilihan pengguna melalui withdraw dan mencatatnya dalam transaction history.
+
+Body:
+
+```json
+{
+		"amount": withdraw amount
+}
+```
+
+Header:
+
+![Header image](https://github.com/user-attachments/assets/0eeb28f0-913c-401b-86e2-a56d7ae4a839)
+
+Result:
+
+```json
+{
+		"message": "Successful withdrawal"
+}
+
+```
+
+Additional Notes:
+
+- Untuk mengakses endpoint ini, anda harus terlebih dahulu memiliki account.
+- Amount harus diisi, bersifat positif, dan tidak melebihi jumlah saldo dalam rekening.
+- Token `Authorization` didapatkan melalui /api/auth/transaction.
+
+Example Result:
+![Example of Withdraw](https://github.com/user-attachments/assets/dbdd9717-a052-4309-969f-3cd695c35fe0)
