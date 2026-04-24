@@ -347,3 +347,91 @@ Notes: user harus memiliki role sebagai admin dan bukan user untuk mengakses end
 
 2. GET `localhost:<portNum>/api/admin/transactions`
 Notes: user harus memiliki role sebagai admin dan bukan user untuk mengakses endpoint ini, dan menggunakan token login
+
+### Accounts Components
+1. POST `localhost:<portNum>/api/accounts`. Membuat account baru untuk user yang sudah terdaftar. Satu user dapat memiliki lebih dari satu account. Saat account dibuat, user harus mengisi PIN transaksi dan konfirmasi PIN.
+
+```json
+Body:
+{
+  "userId": "yourUserId",
+  "accountNumber": "optionalCustomAccountNumber",
+  "balance": 0,
+  "accountType": "savings",
+  "status": "active",
+  "pin": "123456",
+  "confirmPin": "123456"
+}
+
+Result:
+{
+  "status": "success",
+  "message": "Account created successfully",
+  "data": {
+    "_id": "yourAccountId",
+    "userId": "yourUserId",
+    "accountNumber": "yourGeneratedAccountNumber",
+    "balance": 0,
+    "accountType": "savings",
+    "status": "active",
+    "pin": "hashedPin",
+    "createdAt": "timestamp",
+    "updatedAt": "timestamp"
+  }
+}
+```
+
+Additional Notes:
+
+- Untuk mengakses endpoint ini, anda harus menggunakan authorization token dari auth.
+
+2. GET `localhost:<portNum>/api/accounts`. Menampilkan seluruh account yang terdaftar di database.
+
+```json
+Body:
+{
+    "userId": "yourUserId",
+    "pin": "your pin",
+    "confirmPin": "confirmation pin",
+}
+
+Result:
+{
+  "status": "success",
+  "message": "Accounts retrieved successfully",
+  "data": [
+    {
+      "_id": "yourAccountId",
+      "userId": "yourUserId",
+      "accountNumber": "yourAccountNumber",
+      "balance": 100000,
+      "accountType": "savings",
+      "status": "active",
+      "createdAt": "timestamp",
+      "updatedAt": "timestamp"
+    }
+  ]
+}
+```
+
+Additional Notes:
+
+- Nilai yang tidak dikirimkan melalui payload, akan diisi secara automatis oleh sistem dengan default value untuk field seperti userId, balance, accountType, status.
+- Untuk mengakses endpoint ini, anda harus menggunakan authorization token dari auth.
+
+3. GET `localhost:<portNum>/api/accounts/:id/balance`. Menampilkan saldo dari account berdasarkan accountId.
+
+```json
+Result:
+{
+  "status": "success",
+  "message": "Balance retrieved successfully",
+  "data": {
+    "balance": 100000
+  }
+}
+```
+
+Additional Notes:
+
+- Untuk mengakses endpoint ini, anda harus menggunakan authorization token dari auth.
