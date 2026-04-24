@@ -335,60 +335,9 @@ Body:
 
 Result:
 {
-  message: 'List of Beneficiary',
+  message: "List of Beneficiary",
   data
 }
-```
-
-### Admin Components
-
-1. GET `localhost:<portNum>/api/admin/users`
-Notes: user harus memiliki role sebagai admin dan bukan user untuk mengakses endpoint ini, dan menggunakan token login
-
-
-Example Result:
-![Example of User Login]()
-
-2. GET `localhost:<portNum>/api/admin/transactions`
-Notes: user harus memiliki role sebagai admin dan bukan user untuk mengakses endpoint ini, dan menggunakan token login
-
-### Beneficiaries Components
-
-1. POST `localhost:<portNum>/api/beneficiaries`
-Notes: user hanya bisa menambahkan beneficiaries berdasarkan transaksi yang sudah pernah dilakukan sebelumnya
-
-```json
-Body:
-{
-  "ownerAccountId": "accountId",
-  "recipientAccountNumber": "recipientId",
-  "recipientName": "name",
-  "bankName": "bankName",
-  "alias": "alias"
-}
-
-Result:
-{
-  message: "Beneficiary added successfully",
-  data: newBeneficiary
-}
-```
-
-2. GET `localhost:<portNum>/api/beneficiaries`
-
-```json
-Body: 
-{
-  "userId": "",
-  "accountType": "saving", "invesment"
-}
-
-Result:
-{
-  message: 'List of Beneficiary',
-  data
-}
-
 ```
 
 ### Admin Components
