@@ -383,18 +383,12 @@ Result:
 
 Additional Notes:
 
+- Nilai yang tidak dikirimkan melalui payload, akan diisi secara automatis oleh sistem dengan default value untuk field seperti userId, balance, accountType, status.
 - Untuk mengakses endpoint ini, anda harus menggunakan authorization token dari auth.
 
 2. GET `localhost:<portNum>/api/accounts`. Menampilkan seluruh account yang terdaftar di database.
 
 ```json
-Body:
-{
-    "userId": "yourUserId",
-    "pin": "your pin",
-    "confirmPin": "confirmation pin",
-}
-
 Result:
 {
   "status": "success",
@@ -409,14 +403,14 @@ Result:
       "status": "active",
       "createdAt": "timestamp",
       "updatedAt": "timestamp"
-    }
+    },
+    ...
   ]
 }
 ```
 
 Additional Notes:
 
-- Nilai yang tidak dikirimkan melalui payload, akan diisi secara automatis oleh sistem dengan default value untuk field seperti userId, balance, accountType, status.
 - Untuk mengakses endpoint ini, anda harus menggunakan authorization token dari auth.
 
 3. GET `localhost:<portNum>/api/accounts/:id/balance`. Menampilkan saldo dari account berdasarkan accountId.
